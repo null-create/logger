@@ -113,33 +113,28 @@ func createLogFile(lfpath string) error {
 	return nil
 }
 
-// display the log message to the terminal without writing to the log file
-func (l *Logger) Show(msg string) {
-	l.log.Info(msg)
-}
-
 // Info logs at LevelInfo and displays the message.
-func (l *Logger) Info(msg string) {
-	l.log.Info(msg)
-	l.Log(INFO, msg)
+func (l *Logger) Info(msg string, v ...any) {
+	l.log.Info(fmt.Sprintf(msg, v...))
+	l.Log(INFO, fmt.Sprintf(msg, v...))
 }
 
 // Debug logs at LevelDebug and displays the message.
-func (l *Logger) Debug(msg string) {
-	l.log.Debug(msg)
-	l.Log(DEBUG, msg)
+func (l *Logger) Debug(msg string, v ...any) {
+	l.log.Debug(fmt.Sprintf(msg, v...))
+	l.Log(DEBUG, fmt.Sprintf(msg, v...))
 }
 
 // Warn logs at LevelWarn and displays the message.
-func (l *Logger) Warn(msg string) {
-	l.log.Warn(msg)
-	l.Log(WARN, msg)
+func (l *Logger) Warn(msg string, v ...any) {
+	l.log.Warn(fmt.Sprintf(msg, v...))
+	l.Log(WARN, fmt.Sprintf(msg, v...))
 }
 
 // Error logs at LevelError and displays the error message
-func (l *Logger) Error(msg string) {
-	l.log.Error(msg)
-	l.Log(ERROR, msg)
+func (l *Logger) Error(msg string, v ...any) {
+	l.log.Error(fmt.Sprintf(msg, v...))
+	l.Log(ERROR, fmt.Sprintf(msg, v...))
 }
 
 // Log writes a log entry to the CSV file. Does not display the message.
